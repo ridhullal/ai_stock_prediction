@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }} — Result</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .markdown-body { font-size: 16px; line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">{{ app_name }} - Analysis Result</h1>
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="markdown-body">
+                    {{ analysis_html | safe }}
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/" class="btn btn-primary">🔙 Back to Home</a>
+        </div>
+    </div>
+</body>
+</html>

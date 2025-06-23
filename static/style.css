@@ -1,0 +1,73 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 40px;
+    background: #f4f6fa;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+form, .result-container {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 700px;
+    margin: auto;
+}
+
+input, select {
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #0070f3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056c1;
+}
+
+#suggestions div {
+    padding: 6px;
+    background: #eee;
+    border: 1px solid #ddd;
+    cursor: pointer;
+}
+
+#suggestions div:hover {
+    background: #d6e6ff;
+}
+
+a {
+    display: inline-block;
+    margin-top: 20px;
+    color: #0070f3;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+pre {
+    white-space: pre-wrap;
+}
+
+.result-container .markdown-body {
+    font-size: 16px;
+    line-height: 1.6;
+}

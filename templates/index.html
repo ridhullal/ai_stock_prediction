@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; }
+        .container { max-width: 700px; margin-top: 50px; }
+        #suggestions div { padding: 5px; cursor: pointer; border-bottom: 1px solid #ddd; }
+        #suggestions div:hover { background-color: #f1f1f1; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mb-4 text-center">{{ app_name }}</h1>
+        <div class="card shadow">
+            <div class="card-body">
+                <form method="post" action="/analyse">
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Select Stock</label>
+                        <input type="text" name="stock" id="stock" class="form-control" oninput="autocomplete()" autocomplete="off" required>
+                        <div id="suggestions" class="border rounded mt-1"></div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="timeframe" class="form-label">Select Timeframe</label>
+                        <select name="timeframe" class="form-select" required>
+                            <option value="day">Day</option>
+                            <option value="minute">Minute</option>
+                            <option value="week">Week</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="start_date" class="form-label">Start Date</label>
+                        <input type="date" name="start_date" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="end_date" class="form-label">End Date</label>
+                        <input type="date" name="end_date" class="form-control" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">🔍 Analyze</button>
+                </form>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="/login" class="btn btn-outline-secondary">Login with Zerodha</a>
+        </div>
+    </div>
+
+    <script>
+        async function autocomplete() {
+            const query = document.getElementById("stock").value;
+            if (query.length === 0) {
+                document.getElementById("suggestions").innerHTML = "";
+                return;
+            }
+            const response = await fetch(`/symbols?q=${query}`);
+            const symbols = await response.json();
+            let suggestions = "";
+            symbols.forEach(sym => {
+                suggestions += `<div onclick="selectSymbol('${sym}')">${sym}</div>`;
+            });
+            document.getElementById("suggestions").innerHTML = suggestions;
+        }
+
+        function selectSymbol(symbol) {
+            document.getElementById("stock").value = symbol;
+            document.getElementById("suggestions").innerHTML = "";
+        }
+    </script>
+</body>
+</html>
